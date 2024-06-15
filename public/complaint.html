@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Street Light Complaint</title>
+    <!-- Include necessary CSS and JavaScript libraries, such as Bootstrap and Leaflet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- Include your custom CSS -->
+    <style>
+        /* Add your custom styles here */
+        #map {
+            height: 300px;
+        }
+        body {
+            background-color: #fae1d6; /* Set your desired background color */
+            padding: 20px; /* Add some padding for better appearance */
+        }
+        .container {
+            background-color: #ffffff; /* Set a white background for the container */
+            padding: 20px; /* Add some padding for better appearance */
+            border-radius: 10px; /* Add rounded corners to the container */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the container */
+        }
+        
+        h1 {
+            color: #333; /* Set the heading text color */
+        }
+
+        /* You can add more custom styles as needed */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Street Light Complaint Form</h1>
+        <form id="complaintForm">
+            <div class="form-group">
+                <label for="complaint">Complaint Description:</label>
+                <textarea class="form-control" id="complaint" name="complaint" rows="4"></textarea>
+            </div>
+            <div class="form-attach">
+                <label for="fileInput">Choose an Image:</label>
+                <input type="file" id="fileInput" name="fileInput">
+                <input type="submit" value="Upload">
+            </div>
+            <div class="form-group">
+                <label for="latitude">Latitude:</label>
+                <input type="text" class="form-control" id="latitude" name="latitude" readonly>
+            </div>
+            <div class="form-group">
+                <label for="longitude">Longitude:</label>
+                <input type="text" class="form-control" id="longitude" name="longitude" readonly>
+            </div>
+            <div id="map"></div>
+            <button type="button" class="btn btn-primary" onclick="getLocation()">Get My Location</button>
+            <button type="submit" class="btn btn-success">Submit Complaint</button>
+            <button id="feedback" class="btn btn-secondary">Feedback </button>
+            <script>
+                function goToAnotherPage() 
+                {
+                    var url = 'newindex.html';
+                    window.location.href = url;
+                }
+                document.getElementById('feedback').addEventListener('click', goToAnotherPage);
+            </script>
+            
+        </form>
+    </div>
+
+    <script>
+        var map;
+
+        function initMap() {
+            map = L.map('map').setView([0, 0], 13); // Set initial map view
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            var latitudeInput = document.getElementById("latitude");
+            var longitudeInput = document.getElementById("longitude");
+
+            latitudeInput.value = position.coords.latitude;
+            longitudeInput.value = position.coords.longitude;
+
+            // Update the map with the user's location
+            map.setView([position.coords.latitude, position.coords.longitude], 13);
+            L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+        }
+
+        $(document).ready(function () {
+            // Handle form submission
+            $("#complaintForm").submit(function (event) {
+                event.preventDefault();
+                var complaint = $("#complaint").val();
+                var latitude = $("#latitude").val();
+                var longitude = $("#longitude").val();
+
+                // You can now send this data to a server using AJAX or a form submission.
+                // For simplicity, we'll just log the data to the console.
+                console.log("Complaint: " + complaint);
+                console.log("Latitude: " + latitude);
+                console.log("Longitude: " + longitude);
+
+                // Reset the form if needed
+                // $("#complaintForm")[0].reset();
+            });
+        });
+    </script>
+
+    <!-- Initialize the map on page load -->
+    <script>
+        initMap();
+    </script>
+    
+</body>
+</html>
