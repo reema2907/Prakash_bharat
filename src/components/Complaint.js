@@ -1,11 +1,13 @@
 import React from 'react';
-import { Box, Button, Image, Flex ,Text} from '@chakra-ui/react';
+import { Box, Button, Image, Flex, Text } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 import image1 from '../images/pic7.webp'; // Ensure the correct path to your image
 
 function Complaint() {
+  const navigate = useNavigate();
+
   const redirectToComplaintPage = () => {
-    // Implement your redirection logic here
-    window.location.href = '/complaint.html'; // Example redirection
+    navigate('/complaintform');
   };
 
   return (
@@ -15,7 +17,6 @@ function Complaint() {
       alignItems="center"
       bg="black"
     >
-       
       <Box
         bg="black"
         width={['50%', '60%', '60%']} // Decreased width
@@ -50,7 +51,6 @@ function Complaint() {
         
         <Button
           mt={18}
-          
           color="white"
           bg="teal"
           fontFamily="cursive"
@@ -62,19 +62,16 @@ function Complaint() {
         >
           REPORT STREETLIGHT ISSUES
         </Button>
-        <text>
-          fkj 
-        </text>
-         <Text
-        color="white"
-        fontFamily="cursive"
-        fontSize="large"
-        mt={10} // Margin top for spacing
-        textAlign="center"
-      >
-        Please report any issues with the streetlights in your area.<br></br>Users can effortlessly report defective street lights, providing accurate locations through our GIS /GPS  interface. This data is then leveraged for a swift and effective resolution of reported issues.
-
-      </Text>
+        
+        <Text
+          color="white"
+          fontFamily="cursive"
+          fontSize="large"
+          mt={10} // Margin top for spacing
+          textAlign="center"
+        >
+          Please report any issues with the streetlights in your area.<br />Users can effortlessly report defective street lights, providing accurate locations through our GIS /GPS interface. This data is then leveraged for a swift and effective resolution of reported issues.
+        </Text>
       </Box>
     </Flex>
   );
