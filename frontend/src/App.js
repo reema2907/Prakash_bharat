@@ -7,7 +7,7 @@ import About from './components/About';
 import StreetLightComplaintForm from './components/complaintForm';
 
 
-import Complaint from './components/Complaint';
+import Complaint from './components/complaintPage';
 
 
 function App() {
