@@ -1,0 +1,142 @@
+[
+  {
+    "id": "1",
+    "name": "Lal Qila",
+    "electrician": "Rakesh",
+    "contact": "+91 9876543210",
+    "address": {
+      "latitude": 28.6562,
+      "longitude": 77.2410
+    }
+  },
+  {
+     "id": "2",
+    "name": "Qutub Minar",
+    "electrician": "Gaurav",
+    "contact": "+91 9876543211",
+    "address": {
+      "latitude": 28.5244,
+      "longitude": 77.1855
+    }
+  },
+  {
+     "id": "3",
+    "name": "JLN Stadium",
+    "electrician": "Ashish",
+    "contact": "+91 9876543212",
+    "address": {
+      "latitude": 28.5820,
+      "longitude": 77.2347
+    }
+  },
+  {
+     "id": "4",
+    "name": "Kalkaji Mandir",
+    "electrician": "Rakesh",
+    "contact": "+91 9876543213",
+    "address": {
+      "latitude": 28.5485,
+      "longitude": 77.2566
+    }
+  },
+  {
+     "id": "5",
+    "name": "Akshardham",
+    "electrician": "Rohan",
+    "contact": "+91 9876543214",
+    "address": {
+      "latitude": 28.6127,
+      "longitude": 77.2773
+    }
+  },
+  {
+     "id": "6",
+    "name": "Jama Masjid",
+    "electrician": "Amir",
+    "contact": "+91 9876543215",
+    "address": {
+      "latitude": 28.6507,
+      "longitude": 77.2334
+    }
+  },
+  {
+     "id": "6",
+    "name": "Central Secretariat",
+    "electrician": "Salman",
+    "contact": "+91 9876543216",
+    "address": {
+      "latitude": 28.6143,
+      "longitude": 77.2089
+    }
+  },
+  {
+     "id": "7",
+    "name": "Rajiv Chowk",
+    "electrician": "Aryan",
+    "contact": "+91 9876543217",
+    "address": {
+      "latitude": 28.6330,
+      "longitude": 77.2197
+    }
+  },
+  {
+     "id": "8",
+    "name": "Jor Bagh",
+    "electrician": "Arpit",
+    "contact": "+91 9876543218",
+    "address": {
+      "latitude": 28.5852,
+      "longitude": 77.2116
+    }
+  },
+  {
+     "id": "9",
+    "name": "Chandni Chowk",
+    "electrician": "Rohit",
+    "contact": "+91 9876543219",
+    "address": {
+      "latitude": 28.6560,
+      "longitude": 77.2304
+    }
+  },
+  {
+     "id": "10",
+    "name": "Sarojini Nagar",
+    "electrician": "Rishi",
+    "contact": "+91 9876543220",
+    "address": {
+      "latitude": 28.5735,
+      "longitude": 77.1995
+    }
+  },
+  {
+     "id": "11",
+    "name": "Khan Market",
+    "electrician": "Astik",
+    "contact": "+91 9876543221",
+    "address": {
+      "latitude": 28.6002,
+      "longitude": 77.2273
+    }
+  },
+  {
+     "id": "12",
+    "name": "RK Ashram Marg",
+    "electrician": "Arpan",
+    "contact": "+91 9876543222",
+    "address": {
+      "latitude": 28.6407,
+      "longitude": 77.2062
+    }
+  },
+  {
+     "id": "13",
+    "name": "Nehru Place",
+    "electrician": "Rahul",
+    "contact": "+91 9876543223",
+    "address": {
+      "latitude": 28.5494,
+      "longitude": 77.2516
+    }
+  }
+]

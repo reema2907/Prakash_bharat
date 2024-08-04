@@ -14,6 +14,7 @@ import {
   FormControl,
   FormLabel,
 } from '@chakra-ui/react';
+import { useAuth } from '../context/AuthContext';
 
 const LoginDrawer = ({ isOpen, onClose, drawerType }) => {
   const toast = useToast();
@@ -26,6 +27,8 @@ const LoginDrawer = ({ isOpen, onClose, drawerType }) => {
     email: '',
     address: '',
   });
+  
+  const { login, SignIn } = useAuth();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +40,7 @@ const LoginDrawer = ({ isOpen, onClose, drawerType }) => {
 
   const handleFormSubmit = async () => {
     try {
-      const url = drawerType === 'signUp' ? 'http://localhost:5000/api/users/signup' : 'http://localhost:5000/api/users/login';
+      const url = drawerType === 'signUp' ? 'http://localhost:5000/api/auth/signup' : 'http://localhost:5000/api/auth/login';
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -48,6 +51,12 @@ const LoginDrawer = ({ isOpen, onClose, drawerType }) => {
 
       if (response.ok) {
         const data = await response.json();
+        if (drawerType === 'signUp') {
+          SignIn();
+        } else {
+          login();
+        }
+
         toast({
           title: 'Success',
           description: data.message,
@@ -89,36 +98,24 @@ const LoginDrawer = ({ isOpen, onClose, drawerType }) => {
 
           <DrawerBody>
             {drawerType === 'signUp' ? (
-              <>
-                <FormControl isRequired>
+              
+                <FormControl isRequired={true}>
                   <FormLabel>First name</FormLabel>
                   <Input name="firstName" placeholder="First name" onChange={handleInputChange} />
-                </FormControl>
-                <FormControl isRequired>
                   <FormLabel>Last name</FormLabel>
                   <Input name="lastName" placeholder="Last name" onChange={handleInputChange} />
-                </FormControl>
-                <FormControl isRequired>
                   <FormLabel>Username</FormLabel>
                   <Input name="username" placeholder="Username" onChange={handleInputChange} />
-                </FormControl>
-                <FormControl isRequired>
                   <FormLabel>Password</FormLabel>
                   <Input name="password" type="password" placeholder="Password" onChange={handleInputChange} />
-                </FormControl>
-                <FormControl isRequired>
                   <FormLabel>Confirm Password</FormLabel>
                   <Input name="confirmPassword" type="password" placeholder="Confirm Password" onChange={handleInputChange} />
-                </FormControl>
-                <FormControl isRequired>
                   <FormLabel>Email Address</FormLabel>
                   <Input name="email" placeholder="Email Address" onChange={handleInputChange} />
-                </FormControl>
-                <FormControl isRequired>
                   <FormLabel>Address</FormLabel>
                   <Input name="address" placeholder="Address" onChange={handleInputChange} />
                 </FormControl>
-              </>
+              
             ) : (
               <>
                 <Input placeholder="Username" name="username" onChange={handleInputChange} />
