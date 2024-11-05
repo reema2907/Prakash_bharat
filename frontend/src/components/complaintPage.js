@@ -1,26 +1,19 @@
-import backgroundImage from '../images/pic7.webp';
+
 import React, { useState, useEffect, useRef } from 'react';
 import L from 'leaflet';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
-import { useToast, Box, Button, WrapItem, Wrap, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Table, Thead, Tbody, Tr, Th, Td, ChakraProvider, Heading, Flex, Spacer, Divider, Center, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { useToast, Box, Button,  ChakraProvider, Heading, Flex,  FormControl, FormLabel, Input } from '@chakra-ui/react';
 
 import './App.css';
 //import customMarkerIcon from '../images/marker-icon.png'; // Import your custom marker icon image
 
 function Complaint() {
-    const [formData, setFormData] = useState({
-        description: '',
-        address: '',
-        latitude: '',
-        longitude: '',
-    });
-    const [electricianData, setElectricianData] = useState(null);
-    const [loading, setLoading] = useState(false);
+    
+    const [description, setdescription] = useState('');
+    const [address, setAddress] = useState('');
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
-
-    const { isOpen, onOpen, onClose } = useDisclosure();
     const mapRef = useRef(null);
     const mapContainerRef = useRef(null);
     const toast = useToast();
@@ -59,56 +52,45 @@ function Complaint() {
 }, []);
 
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+    
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await axios.post('http://localhost:5000/api/submit/Form-Submit', {
+            description,
+            address,
+            latitude,
+            longitude,
+            // Add more fields if needed
+        });
 
-    const handleSubmit = async () => {
-        try {
-            const url = 'http://localhost:5000/api/submit/Form-Submit';
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+        if (response.status === 201) {
+            toast({
+                title: 'Success',
+                description: response.data.message,
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
             });
-
-            if (response.ok) {
-                const data = await response.json();
-
-                toast({
-                    title: 'Success',
-                    description: data.message,
-                    status: 'success',
-                    duration: 5000,
-                    isClosable: true,
-                });
-
-                setFormData({
-                    description: '',
-                    address: '',
-                    latitude: '',
-                    longitude: '',
-                });
-            } else {
-                throw new Error('Error in form submission');
-            }
-        } catch (error) {
+        } else {
             toast({
                 title: 'Error',
-                description: 'Something went wrong. Please try again.',
+                description: 'Failed to submit the form.',
                 status: 'error',
                 duration: 5000,
                 isClosable: true,
             });
         }
-    };
-
+    } catch (error) {
+        toast({
+            title: 'Error',
+            description: `An error occurred: ${error.message}`,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+        });
+    }
+};
     const getLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -134,124 +116,11 @@ function Complaint() {
 
             L.marker([position.coords.latitude, position.coords.longitude], { icon: customIcon }).addTo(mapRef.current);
         }
-    };
-
-    const places = [
-        'Lal Qila', 'Qutub Minar', 'JLN Stadium', 'Kalkaji Mandir', 'Akshardham',
-        'Jama Masjid', 'Central Secretariat', 'Rajiv Chowk', 'Jor Bagh',
-        'Chandni Chowk', 'Sarojini Nagar', 'Khan Market', 'RK Ashram Marg', 'Nehru Place'
-    ];
-
-    const PlaceButtons = () => {
-        const [status, setStatus] = useState(places.reduce((acc, place) => {
-            acc[place] = true;
-            return acc;
-        }, {}));
-
-        const handleClick = async (place) => {
-            const newStatus = { ...status, [place]: !status[place] };
-            setStatus(newStatus);
-
-            const selected = Object.keys(newStatus).find(p => !newStatus[p]);
-            onOpen();
-            if (selected) {
-                setLoading(true);
-                try {
-                    const response = await axios.get(`http://localhost:5000/api/data/${encodeURIComponent(selected)}`);
-                    setElectricianData(response.data);
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                } finally {
-                    setLoading(false);
-                }
-            }
-        };
-
-        return (
-            <Box width='700px' justifyContent={'space-around'}>
-                <Heading paddingTop={'1rem'} marginBlockEnd={'auto'} fontFamily='cursive' fontSize={'xx-large'}>
-                    Select the locations
-                </Heading>
-                <Wrap paddingTop={'4rem'}>
-                    {places.map((place) => (
-                        <WrapItem key={place}>
-                            <Button
-                                onClick={() => handleClick(place)}
-                                colorScheme={status[place] ? 'blue' : 'red'}
-                            >
-                                {place}
-                            </Button>
-                            </WrapItem>
-                            ))}
-                 </Wrap>
-                            <Modal isOpen={isOpen} onClose={onClose}>
-                                <ModalOverlay />
-                                <ModalContent>
-                                    <ModalHeader>Selected Locations</ModalHeader>
-                                    <ModalCloseButton />
-                                    <ModalBody>
-                                        {loading ? <p>Loading...</p> : electricianData ? (
-                                            <Table>
-                                                <Thead>
-                                                    <Tr>
-                                                        <Th>Electrician</Th>
-                                                        <Th>Place</Th>
-                                                        <Th>Contact</Th>
-                                                    </Tr>
-                                                </Thead>
-                                                <Tbody>
-                                                    <Tr>
-                                                        <Td>{electricianData.name}</Td>
-                                                        <Td>{electricianData.place}</Td>
-                                                        <Td>{electricianData.contact}</Td>
-                                                    </Tr>
-                                                </Tbody>
-                                            </Table>
-                                        ) : (
-                                            <p>No data available</p>
-                                        )}
-                                    </ModalBody>
-                                    <ModalFooter />
-                                </ModalContent>
-                            </Modal>
-                       
-               
-                <Box paddingTop={'1rem'}>
-                    <Button
-                        color="white"
-                        bg="teal"
-                        fontFamily="cursive"
-                        fontWeight="bold"
-                        borderRadius="10px"
-                    >
-                        Submit the Locations
-                    </Button>
-                </Box>
-            </Box>
-        );
-    };
+    }; 
 
     return (
         <ChakraProvider>
-            <Flex bg='black' h='500px' color='white' justifyContent='flex-start'>
-                <PlaceButtons />
-                <Spacer />
-                <Box
-                    width='700px'
-                    height='450px'
-                    bg='white'
-                    borderRadius='8px'
-                    margin='20px'
-                    backgroundImage={`url(${backgroundImage})`}
-                    backgroundSize='cover'
-                    backgroundPosition='right'
-                    backgroundRepeat='no-repeat'
-                />
-            </Flex>
-            <Center height='30px'>
-                <Divider orientation='vertical' />
-            </Center>
-            <Box bg='antiquewhite' p={4}>
+            <Box bg='black' p={4}>
                 <Flex
                     bg='white'
                     borderRadius="10px"
@@ -264,9 +133,9 @@ function Complaint() {
                     </Heading>
                     <FormControl>
                         <FormLabel>Complaint Description:</FormLabel>
-                        <Input name="description" value={formData.description} onChange={handleInputChange} />
+                        <Input name="description" value={description} onChange={(e)=> setdescription(e.target.description) } />
                         <FormLabel>Address</FormLabel>
-                        <Input type='text' name='address' value={formData.address} onChange={handleInputChange} />
+                        <Input type='text' name='address' value={address} onChange={(e)=> setAddress(e.target.address)} />
                         <FormLabel>Choose an Image:</FormLabel>
                         <input type="file" name="fileInput" />
                         <FormLabel>Latitude:</FormLabel>

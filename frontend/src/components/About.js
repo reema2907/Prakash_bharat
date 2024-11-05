@@ -7,7 +7,7 @@ import image1 from '../images/pic5.jpg';
 // The variable image3 is a duplicate of image1, so it's removed.
 
 
-import { Flex, Box, Heading, Center, Divider, Text,Spacer ,Image} from '@chakra-ui/react';
+import { Flex, Box, Heading, Center, Divider, Text,Image} from '@chakra-ui/react';
 
 
 function About() {

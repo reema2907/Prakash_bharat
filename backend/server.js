@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const fs = require('fs');
+
 const cors = require('cors');
 const dotenv = require('dotenv');
 
@@ -10,6 +10,7 @@ dotenv.config();
 const authRoutes = require('./routes/auth');
 const dataRoutes = require('./routes/data'); // Correct naming for clarity
 const FormRoutes = require('./routes/submit');
+
 const app = express();
 
 // Middleware
@@ -20,7 +21,6 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 app.use('/api/data', dataRoutes);
 app.use('/api/submit', FormRoutes);
-
 
 
 
