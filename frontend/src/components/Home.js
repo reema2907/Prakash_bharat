@@ -2,7 +2,7 @@ import backgroundImage from '../images/background2.jpg'; // Import the image
 import background1 from '../images/people.jpg'; 
 import background2 from '../images/electrican1.jpg'; 
 import { Box} from '@chakra-ui/react';
-import {   ChakraProvider, Heading, Flex, Spacer, Divider, Center } from '@chakra-ui/react';
+import {ChakraProvider, Heading, Flex, Spacer, Divider, Center } from '@chakra-ui/react';
 
 
 

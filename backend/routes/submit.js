@@ -5,8 +5,6 @@ const Form = require('../models/ComplaintForm');
 router.post('/Form-Submit', async (req, res) => {
     const { description, address, latitude, longitude } = req.body;
 
-   
-
     try {
         const newForm = new Form({
             description,
