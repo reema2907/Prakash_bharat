@@ -39,9 +39,11 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
+     
+    <div className='b2'>
+     
       <form onSubmit={handleSignUp}>
+         <h2 >Sign Up</h2>
         <label>
           First Name:
           <input
