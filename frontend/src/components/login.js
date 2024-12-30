@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {  Button } from '@chakra-ui/react';
+import './Login.css';
+
 
 
 function Login({ onLogin }) {
@@ -46,10 +47,11 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div>
-      <h2>Welcome to Prakash Bharat</h2>
+    <div className='b2'>
+    <div className='main-div '>
+      <h2 className='head-h2'>Welcome to Prakash Bharat</h2>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className="l2-label">
           Username:
           <input
             type="text"
@@ -59,7 +61,7 @@ function Login({ onLogin }) {
           />
         </label>
         <br />
-        <label>
+        <label  className="l2-label">
           Password:
           <input
             type="password"
@@ -69,15 +71,16 @@ function Login({ onLogin }) {
           />
         </label>
         <br />
-        <Button colorScheme="teal" onClick={(e) => handleSubmit(e)}zz>
+        <button className='login-button' onClick={(e) => handleSubmit(e)}zz>
           Log In
-        </Button>
+        </button>
       </form>
-      <p>If not registered:</p>
-      <Button colorScheme="teal" onClick={handleNavigateToSignUp}>
+      <p className='para'>If not registered:</p>
+      <button className='login-button'  onClick={handleNavigateToSignUp}>
         Sign Up
-      </Button>
-    </div>
+      </button>
+      </div>
+      </div>
   );
 }
 

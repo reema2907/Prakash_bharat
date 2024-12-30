@@ -1,0 +1,76 @@
+/* General Styles */
+
+.b2{
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+/* Login Container */
+.main-div {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  
+}
+
+/* Title */
+.head-h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+/* Form Labels */
+.l2-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #34495e;
+  text-align: left;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Input Focus */
+input:focus {
+  border-color: #4fd1c5; /* Chakra UI teal color */
+  outline: none;
+}
+
+/* Buttons */
+
+/* Paragraph Text */
+.para {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #7f8c8d;
+}
+.login-button {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+

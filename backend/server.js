@@ -8,7 +8,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const authRoutes = require('./routes/auth');
-const dataRoutes = require('./routes/data'); // Correct naming for clarity
 const FormRoutes = require('./routes/submit');
 
 const app = express();
@@ -19,7 +18,6 @@ app.use(cors());
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/data', dataRoutes);
 app.use('/api/submit', FormRoutes);
 
 
