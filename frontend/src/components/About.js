@@ -1,45 +1,32 @@
+import React from 'react';
 import backgroundImage from '../images/backgservice.jpeg';
-
-import image3 from '../images/pic4.jpg';
-import image2 from '../images/street.jpg';
 import image1 from '../images/pic5.jpg';
-
-// The variable image3 is a duplicate of image1, so it's removed.
-
-
-import { Flex, Box, Heading, Center, Divider, Text,Image} from '@chakra-ui/react';
-
+import image2 from '../images/street.jpg';
+import { Flex, Box, Heading, Center, Divider, Text, Image } from '@chakra-ui/react';
+import './styles.css'; // Import the external CSS file
 
 function About() {
- 
-
-  const imageStyles = {
-    width: '850px',
-    height: '480px',
-    bg: 'white',
-    borderRadius: '8px',
-    margin: '10px',
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'right',
-    backgroundRepeat: 'no-repeat',
-  };
-  
-  
-
   return (
     <div>
+      {/* First Flex Box Section */}
       <Flex bg="black" h="500px" color="white" justifyContent="flex-start">
         <Box display="flex" alignItems="center">
-          <Heading fontFamily="cursive" fontSize="xxx-large">ALL ABOUT PRAKASH BHARAT</Heading>
+          <Heading fontFamily="cursive" fontSize="xxx-large">
+            ALL ABOUT PRAKASH BHARAT
+          </Heading>
         </Box>
-        <Box style={{ ...imageStyles }}></Box>
+        <Box
+          className="image-box"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        />
       </Flex>
 
+      {/* Divider */}
       <Center height="30px">
         <Divider orientation="vertical" />
       </Center>
 
+      {/* Second Flex Box Section */}
       <Flex
         bg="black"
         h="700px"
@@ -49,76 +36,31 @@ function About() {
         flexDirection="column"
       >
         <Flex>
-          <Box
-            bg="black"
-            borderRadius="50%"
-            h="400px"
-            w="400px"
-            m="40px"
-            overflow="hidden"
-            position="relative"
-            color="white"
-          >
+          <Box className="circle-image">
             <Image src={image1} h="100%" w="100%" objectFit="cover" />
           </Box>
-          <Box
-            bg="black"
-            borderRadius="50%"
-            h="400px"
-            w="400px"
-            m="40px"
-            overflow="hidden"
-            position="relative"
-            color="white"
-          >
-            <Image src={image3} h="100%" w="100%" objectFit="cover" />
+          <Box className="circle-image">
+            <Image src={image2} h="100%" w="100%" objectFit="cover" />
           </Box>
-          <Box
-            bg="black"
-            borderRadius="50%"
-            h="400px"
-            w="400px"
-            m="40px"
-            overflow="hidden"
-            position="relative"
-            color="white"
-          >
+          <Box className="circle-image">
             <Image src={image2} h="100%" w="100%" objectFit="cover" />
           </Box>
         </Flex>
+
         <Flex justifyContent="space-between" width="100%" px="40px">
-          <Text
-            fontSize="18px"
-            fontWeight="bold"
-            textAlign="center"
-            flex="1"
-            px="10px"
-          >
-          Prakash Bharat stands as a beacon of light, offering a multilingual platform designed with utmost user-friendliness across diverse languages. 
-
+          <Text className="text-box" flex="1">
+            Prakash Bharat stands as a beacon of light, offering a multilingual platform designed with utmost user-friendliness across diverse languages.
           </Text>
-          <Text
-            fontSize="18px"
-            fontWeight="bold"
-            textAlign="center"
-            flex="1"
-            px="10px"
-          >
-           Our mission is to foster economic stability by providing gainful employment opportunities to local electricians who may have previously experienced uncertain income streams. 
-
+          <Text className="text-box" flex="1">
+            Our mission is to foster economic stability by providing gainful employment opportunities to local electricians who may have previously experienced uncertain income streams.
           </Text>
-          <Text
-            fontSize="18px"
-            fontWeight="bold"
-            textAlign="center"
-            flex="1"
-            px="10px"
-          >
-           Prakash Bharat seamlessly tracks the user's location, facilitating the expedient allocation of the nearest qualified electrician to address the reported issue
+          <Text className="text-box" flex="1">
+            Prakash Bharat seamlessly tracks the user's location, facilitating the expedient allocation of the nearest qualified electrician to address the reported issue.
           </Text>
         </Flex>
       </Flex>
     </div>
   );
-};
+}
+
 export default About;

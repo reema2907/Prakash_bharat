@@ -1,0 +1,67 @@
+/* styles.css */
+
+.home-custom-heading {
+  font-family: cursive;
+  font-size: xxx-large;
+}
+
+.home-custom-box {
+  width: 800px;
+  height: 450px;
+  background-color: white;
+  border-radius: 8px;
+  margin: 20px;
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.home-custom-box-450 {
+  width: 450px;
+  height: 450px;
+  background-color: white;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.home-custom-flex {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.home-custom-divider {
+  height: 30px;
+}
+/* styles.css */
+
+.image-box {
+  width: 850px;
+  height: 480px;
+  background-color: white;
+  border-radius: 8px;
+  margin: 10px;
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.circle-image {
+  background-color: black;
+  border-radius: 50%;
+  height: 400px;
+  width: 400px;
+  margin: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.text-box {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
